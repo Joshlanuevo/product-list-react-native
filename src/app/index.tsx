@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
+import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/types/product";
 
 export default function HomeScreen() {
@@ -41,8 +42,14 @@ export default function HomeScreen() {
     }
 
     return (
-        <View>
-            <Text>Products: {products.length}</Text>
+        <View className="flex-1">
+            <FlatList
+                data={products}
+                keyExtractor={ item => item.id.toString() }
+                renderItem={({ item }) => (
+                    <ProductCard product={item} />
+                )}
+            />
         </View>
     )
 }
