@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/types/product";
@@ -34,11 +34,19 @@ export default function HomeScreen() {
     }, []);
 
     if (loading) {
-        return <Text>Loading products...</Text>
+        return (
+            <View className="flex-1 items-center justify-center">
+                <ActivityIndicator />
+            </View>
+        )
     }
 
     if (error) {
-        return <Text>Error: {error}</Text>;
+        return (
+            <View className="flex-1 items-center justify-center">
+                <Text>Error: {error}</Text>
+            </View>
+        )
     }
 
     return (
@@ -49,6 +57,7 @@ export default function HomeScreen() {
                 renderItem={({ item }) => (
                     <ProductCard product={item} />
                 )}
+                contentContainerClassName="p-4 gap-3"
             />
         </View>
     )

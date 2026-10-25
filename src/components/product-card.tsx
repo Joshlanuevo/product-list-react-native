@@ -1,4 +1,4 @@
-import { Product } from "@/types/product";
+import type { Product } from "@/types/product";
 import { Image, Text, View } from "react-native";
 
 
@@ -15,12 +15,12 @@ export function ProductCard({ product }: { product: Product }) {
                 {product.title}
             </Text>
 
-            <Text className="mt-1 text-sm text-gray-500">
+            <Text className="mt-1 text-sm text-gray-500" numberOfLines={2}>
                 {product.description}
             </Text>
 
             <Text className="mt-2 text-lg font-bold text-pink-600">
-                ${product.price}
+                ${product.price.toFixed(2)}
             </Text>
         </View>
     )
